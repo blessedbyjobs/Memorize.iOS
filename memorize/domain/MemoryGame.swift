@@ -14,10 +14,22 @@ struct MemoryGame <CardContent> {
         print("picked card \(card)")
     }
     
-    struct Card {
+    mutating func buildCard(content: CardContent, id: Int? = nil) {
+        cards.append(Card(content: content, id: id ?? cards.count ))
+    }
+    
+    struct Card: Identifiable {
         var isFaceUp: Bool
         var isMatched: Bool
         var content: CardContent
+        var id: Int
+                
+        init(content: CardContent, id: Int) {
+            self.content = content
+            isFaceUp = false
+            isMatched = false
+            self.id = id
+        }
     }
 }
 

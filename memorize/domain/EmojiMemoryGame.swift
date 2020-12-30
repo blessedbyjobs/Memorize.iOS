@@ -7,9 +7,16 @@
 
 import Foundation
 
-class EmojiMemoryGame {
+class EmojiMemoryGame: ObservableObject {
     
-    private var model: MemoryGame<String> = MemoryGame()
+    @Published private var model: MemoryGame<String> = MemoryGame()
+    
+    init() {
+        model.buildCard(content: "1")
+        model.buildCard(content: "2")
+        model.buildCard(content: "3")
+        model.buildCard(content: "4")
+    }
     
     var cards: Array<MemoryGame<String>.Card> {
         return model.cards

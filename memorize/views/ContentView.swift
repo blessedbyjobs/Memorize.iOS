@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var viewModel: EmojiMemoryGame = EmojiMemoryGame()
+    
     var body: some View {
-        HStack {
-            ForEach(0..<4) {_ in
-                CardView()
-            }
+        Grid(viewModel.cards) { card in
+            CardView(lable: card.content)
         }
-        .foregroundColor(.orange)
-        .padding()
-        
         
     }
 }
@@ -24,13 +22,18 @@ struct ContentView: View {
 struct CardView: View {
     
     var isFaceUp: Bool = true
+    var lable: String
+    
+    init(lable: String) {
+        self.lable = lable
+    }
     
     var body: some View {
         ZStack {
             if isFaceUp {
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/).fill(Color.white)
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/).stroke(lineWidth: 3.0)
-                Text("🤔")
+                Text(lable)
                     .font(.largeTitle)
             } else {
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/).fill()
