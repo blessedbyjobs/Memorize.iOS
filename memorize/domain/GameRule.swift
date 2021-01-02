@@ -7,41 +7,42 @@
 
 import Foundation
 
-enum GameRulesResolution {
+enum GameRulesResolution<CardContent> where CardContent: Comparable {
     case nothing
-    case miss(Array<MemoryGame<String>.Card>)
-    case hit(Array<MemoryGame<String>.Card>)
+    case miss(Array<Card<CardContent>>)
+    case hit(Array<Card<CardContent>>)
 }
 
-class GameRule {
+class GameRule<CardContent> where CardContent: Comparable {
     
     let requiredCardsCount: Int
-    private var selectedCards: Array<MemoryGame<String>.Card> = []
+    private var selectedCards: Array<Card<CardContent>> = []
     
     init(requiredCardsCount: Int) {
         self.requiredCardsCount = requiredCardsCount
     }
     
-// первоначально пробовал    func chooseCard(card: MemoryGame<Comparable>.Card) {
-    func chooseCard(card: MemoryGame<String>.Card) -> GameRulesResolution {
-        var result = GameRulesResolution.nothing
-        selectedCards.append(card)
-        if selectedCards.count == requiredCardsCount {
-            let firstCard = selectedCards.first!
-            if selectedCards.allSatisfy({ card in card.content == firstCard.content }) {
-                result = .hit(selectedCards)
-            } else {
-                result = .miss(selectedCards)
+    func chooseCard(card: Card<CardContent>) -> GameRulesResolution<CardContent> {
+        var result = GameRulesResolution<CardContent>.nothing
+        if !card.isFaceUp && !card.isMatched {
+            selectedCards.append(card)
+            if selectedCards.count == requiredCardsCount {
+                let firstCard = selectedCards.first!
+                if selectedCards.allSatisfy({ card in card.content == firstCard.content }) {
+                    result = .hit(selectedCards)
+                } else {
+                    result = .miss(selectedCards)
+                }
+                selectedCards = []
             }
-            selectedCards = []
         }
         return result
     }
 }
 
-class DefaultGameRule: GameRule {
+class DefaultGameRule<CardContent>: GameRule<CardContent> where CardContent: Comparable {
     
     init() {
-        super.init(requiredCardsCount: 2)
+        super.init(requiredCardsCount: 3)
     }
 }

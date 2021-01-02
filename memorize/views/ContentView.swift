@@ -31,7 +31,7 @@ struct CardView: View {
     var lable: String
     let fillingColor: Color
     
-    init(card: MemoryGame<String>.Card, fillingColor: Color) {
+    init(card: Card<String>, fillingColor: Color) {
         self.lable = card.content
         self.isFaceUp = card.isFaceUp
         self.isMatched = card.isMatched

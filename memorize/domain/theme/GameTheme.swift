@@ -12,13 +12,13 @@ struct GameTheme {
     let emojiTheme: EmojiThemes
     let background: BackgroundColorTheme
     let rubashkaColor: RubashkaColorTheme
-    let gameRules: GameRule
+    let gameRules: GameRule<String>
     
     static func defaultTheme() -> GameTheme {
         let emojis = EmojiThemes()
         let backgroundTheme = BackgroundColorTheme()
         let rubashkaTheme = RubashkaColorTheme()
-        let gameRule = DefaultGameRule()
+        let gameRule = DefaultGameRule<String>()
         return GameTheme(
             emojiTheme: emojis,
             background: backgroundTheme,
