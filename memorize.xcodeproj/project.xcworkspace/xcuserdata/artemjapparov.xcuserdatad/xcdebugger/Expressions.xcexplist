@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "String.at(_:):StringExtensions.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Array(self)">
+            </PersistentString>
+            <PersistentString
+               value = "Array(arrayLiteral: self)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentView.body.getter:ContentView.swift">
          <PersistentStrings>
             <PersistentString

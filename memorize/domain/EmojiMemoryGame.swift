@@ -20,10 +20,18 @@ class EmojiMemoryGame: ObservableObject {
     
     init(gameTheme: GameTheme) {
         self.gameTheme = gameTheme
-        model.buildCard(content: "1")
-        model.buildCard(content: "2")
-        model.buildCard(content: "2")
-        model.buildCard(content: "1")
+        gameTheme.emojiTheme.currentTheme
+            .sliceRandomUniqueValues(count: 4)  // готовим 4 случайных элемента стрки с выбранной темой
+            .map{ char in "\(char)" }           // преобразовываем char в строку
+            .forEach { emoji in
+                generateCards(with: emoji, number: gameTheme.gameRules.requiredCardsCount)
+            }
+    }
+    
+    private func generateCards(with emoji: String, number: Int) {
+        number.times {
+            model.buildCard(content: emoji)
+        }
     }
     
     //MARK: - intents
