@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB10A02D259D23A9005F9043 /* EmojiThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10A02C259D23A9005F9043 /* EmojiThemes.swift */; };
+		DB10A030259D24E8005F9043 /* NonNullExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10A02F259D24E8005F9043 /* NonNullExtension.swift */; };
+		DB10A034259D2682005F9043 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10A033259D2682005F9043 /* ColorTheme.swift */; };
 		DB2E7DC2259A7BC3009A1EB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E7DC1259A7BC3009A1EB4 /* AppDelegate.swift */; };
 		DB2E7DC4259A7BC3009A1EB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E7DC3259A7BC3009A1EB4 /* SceneDelegate.swift */; };
 		DB2E7DC6259A7BC3009A1EB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E7DC5259A7BC3009A1EB4 /* ContentView.swift */; };
@@ -15,6 +18,7 @@
 		DB2E7DCE259A7BC4009A1EB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2E7DCC259A7BC4009A1EB4 /* LaunchScreen.storyboard */; };
 		DB2E7DD7259A867D009A1EB4 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E7DD6259A867D009A1EB4 /* MemoryGame.swift */; };
 		DB2E7DDA259A8808009A1EB4 /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E7DD9259A8808009A1EB4 /* EmojiMemoryGame.swift */; };
+		DB35EA8C25A0D765001E78D8 /* GameRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB35EA8B25A0D765001E78D8 /* GameRule.swift */; };
 		DB73781F259D0D74003A00E4 /* GameTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB73781E259D0D74003A00E4 /* GameTheme.swift */; };
 		DB737822259D0E3C003A00E4 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB737821259D0E3C003A00E4 /* IntExtensions.swift */; };
 		DB737825259D0FC7003A00E4 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB737824259D0FC7003A00E4 /* GridLayout.swift */; };
@@ -23,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB10A02C259D23A9005F9043 /* EmojiThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiThemes.swift; sourceTree = "<group>"; };
+		DB10A02F259D24E8005F9043 /* NonNullExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonNullExtension.swift; sourceTree = "<group>"; };
+		DB10A033259D2682005F9043 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		DB2E7DBE259A7BC3009A1EB4 /* memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2E7DC1259A7BC3009A1EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB2E7DC3259A7BC3009A1EB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +40,7 @@
 		DB2E7DCF259A7BC4009A1EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB2E7DD6259A867D009A1EB4 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		DB2E7DD9259A8808009A1EB4 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
+		DB35EA8B25A0D765001E78D8 /* GameRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRule.swift; sourceTree = "<group>"; };
 		DB73781E259D0D74003A00E4 /* GameTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTheme.swift; sourceTree = "<group>"; };
 		DB737821259D0E3C003A00E4 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		DB737824259D0FC7003A00E4 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
@@ -51,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB10A02B259D2392005F9043 /* theme */ = {
+			isa = PBXGroup;
+			children = (
+				DB73781E259D0D74003A00E4 /* GameTheme.swift */,
+				DB10A02C259D23A9005F9043 /* EmojiThemes.swift */,
+				DB10A033259D2682005F9043 /* ColorTheme.swift */,
+			);
+			path = theme;
+			sourceTree = "<group>";
+		};
 		DB2E7DB5259A7BC3009A1EB4 = {
 			isa = PBXGroup;
 			children = (
@@ -93,9 +111,10 @@
 		DB737819259D0BA6003A00E4 /* domain */ = {
 			isa = PBXGroup;
 			children = (
+				DB10A02B259D2392005F9043 /* theme */,
 				DB2E7DD6259A867D009A1EB4 /* MemoryGame.swift */,
 				DB2E7DD9259A8808009A1EB4 /* EmojiMemoryGame.swift */,
-				DB73781E259D0D74003A00E4 /* GameTheme.swift */,
+				DB35EA8B25A0D765001E78D8 /* GameRule.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -114,6 +133,7 @@
 			children = (
 				DB737821259D0E3C003A00E4 /* IntExtensions.swift */,
 				DB73782C259D12E6003A00E4 /* ArrayExtensions.swift */,
+				DB10A02F259D24E8005F9043 /* NonNullExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -211,10 +231,14 @@
 				DB2E7DC2259A7BC3009A1EB4 /* AppDelegate.swift in Sources */,
 				DB73781F259D0D74003A00E4 /* GameTheme.swift in Sources */,
 				DB2E7DC4259A7BC3009A1EB4 /* SceneDelegate.swift in Sources */,
+				DB35EA8C25A0D765001E78D8 /* GameRule.swift in Sources */,
+				DB10A034259D2682005F9043 /* ColorTheme.swift in Sources */,
+				DB10A030259D24E8005F9043 /* NonNullExtension.swift in Sources */,
 				DB2E7DD7259A867D009A1EB4 /* MemoryGame.swift in Sources */,
 				DB2E7DC6259A7BC3009A1EB4 /* ContentView.swift in Sources */,
 				DB2E7DDA259A8808009A1EB4 /* EmojiMemoryGame.swift in Sources */,
 				DB737825259D0FC7003A00E4 /* GridLayout.swift in Sources */,
+				DB10A02D259D23A9005F9043 /* EmojiThemes.swift in Sources */,
 				DB737828259D0FE8003A00E4 /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

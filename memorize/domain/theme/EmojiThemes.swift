@@ -1,19 +1,22 @@
 //
-//  GameTheme.swift
+//  EmojiThemes.swift
 //  memorize
 //
-//  Created by Artem Japparov on 30.12.2020.
+//  Created by Artem Japparov on 31.12.2020.
 //
 
 import Foundation
 
-struct GameTheme {
-    
+struct EmojiThemes {
+
     // MARK: - Properties
        
        private var theme: String = "FRUITS"
        private var themeLabels: Array<String>
        
+    var currentTheme: String {
+        return getTheme(theme: theme).nonNull
+    }
        
        init() {
            themeLabels = Array(themes.keys)
