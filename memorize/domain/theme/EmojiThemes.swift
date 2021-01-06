@@ -14,9 +14,9 @@ struct EmojiThemes {
        private var theme: String = "FRUITS"
        private var themeLabels: Array<String>
        
-    var currentTheme: String {
-        return getTheme(theme: theme).nonNull
-    }
+       var currentTheme: String {
+           return getTheme(theme: theme).nonNull
+       }
        
        init() {
            themeLabels = Array(themes.keys)

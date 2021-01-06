@@ -16,6 +16,10 @@ class EmojiMemoryGame: ObservableObject {
         return model.cards
     }
     
+    var score: Int {
+        model.score
+    }
+
     private (set) var gameTheme: GameTheme
     
     init(gameTheme: GameTheme) {

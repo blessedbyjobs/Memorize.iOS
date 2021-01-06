@@ -11,6 +11,14 @@ struct MemoryGame <CardContent> where CardContent: Comparable {
     var cards: Array<Card<CardContent>> = Array()
     var gameRules: GameRule<CardContent> = DefaultGameRule()
     
+    var isGameOver: Bool {
+        cards.allSatisfy { card in
+            card.isMatched
+        }
+    }
+    
+    var score: Int = 0
+    
     private var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
             cards.indices.filter {cards[$0].isFaceUp }.only }
@@ -19,6 +27,10 @@ struct MemoryGame <CardContent> where CardContent: Comparable {
                 cards[index].isFaceUp = index == newValue
                 }
             }
+    }
+    
+    mutating func newGame() {
+        
     }
     
     mutating func choose(card: Card<CardContent>) {
@@ -42,20 +54,6 @@ struct MemoryGame <CardContent> where CardContent: Comparable {
             // nothing to do
         }
         }
-        
-//        if let chosenIndex = cards.firstIndex(matching: card),
-//           !cards[chosenIndex].isFaceUp,
-//           !cards[chosenIndex].isMatched {
-//            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
-//                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
-//                    cards[chosenIndex].isMatched = true
-//                    cards[potentialMatchIndex].isMatched = true
-//                }
-//                cards[chosenIndex].isFaceUp = true
-//            } else {
-//                indexOfTheOneAndOnlyFaceUpCard = chosenIndex
-//            }
-//        }
 
     }
     

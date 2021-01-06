@@ -31,3 +31,10 @@ extension String {
         return resultSet.joined()
     }
 }
+
+extension Character {
+    
+    func toString() -> String {
+        return "\(self)"
+    }
+}

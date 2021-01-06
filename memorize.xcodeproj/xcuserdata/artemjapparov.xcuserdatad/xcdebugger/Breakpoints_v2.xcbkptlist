@@ -14,74 +14,10 @@
             filePath = "memorize/views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "init(card:fillingColor:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AFC54FEC-4EB0-411F-92A8-C6292252A52C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "memorize/views/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "88EAE6EA-5D5F-4440-97C4-B2E22CA200BD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "memorize/views/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "88EAE6EA-5D5F-4440-97C4-B2E22CA200BD - 47e13ab9150b6c9f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "memorize.ContentView.body.getter : some"
-                  moduleName = "memorize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/artemjapparov/Labs/memorize/memorize/views/ContentView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  uuid = "88EAE6EA-5D5F-4440-97C4-B2E22CA200BD - c27f7bd899e1ca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (memorize.MemoryGame&lt;Swift.String&gt;.Card) -&gt; memorize.CardView in memorize.ContentView.body.getter : some"
-                  moduleName = "memorize"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/artemjapparov/Labs/memorize/memorize/views/ContentView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "73">
-               </Location>
-            </Locations>
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "CardView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
