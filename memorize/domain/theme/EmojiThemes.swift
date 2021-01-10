@@ -21,7 +21,7 @@ struct EmojiThemes {
     private var themeLabels: Array<String>
     
     
-    private var themes: Dictionary<String, String> = [
+    let themes: Dictionary<String, String> = [
         "FRUITS":  "🍏🍎🍐🍊🍋🍌🍉🍇🍑🍒🍈🍓🍍🥝",
         "FACES": "😀😄😁😆😂😊☺️😉🙂",
         "ANIMALS": "🐶🐱🐼🐻🦊🐰🐮🐷🐵🐤🦆🦉🐴",

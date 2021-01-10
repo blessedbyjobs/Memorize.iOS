@@ -29,8 +29,8 @@ struct MemoryGame <CardContent> where CardContent: Comparable {
             }
     }
     
-    mutating func newGame() {
-        
+    mutating func shuffle() {
+        cards.shuffle()
     }
     
     mutating func choose(card: Card<CardContent>) {
@@ -42,7 +42,7 @@ struct MemoryGame <CardContent> where CardContent: Comparable {
         case .miss(let missedCards):
             missedCards.forEach { card in
                 let choosenIndex = cards.firstIndex(matching: card)!
-                cards[choosenIndex].isFaceUp = true
+                cards[choosenIndex].isFaceUp = false
             }
         case .hit(let hittedCards):
             hittedCards.forEach { card in

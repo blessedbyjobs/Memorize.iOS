@@ -20,16 +20,11 @@ class EmojiMemoryGame: ObservableObject {
         model.score
     }
 
-    private (set) var gameTheme: GameTheme
+    @Published var gameTheme: GameTheme
     
     init(gameTheme: GameTheme) {
         self.gameTheme = gameTheme
-        gameTheme.emojiTheme.currentTheme
-            .sliceRandomUniqueValues(count: 4)  // готовим 4 случайных элемента стрки с выбранной темой
-            .map{ char in "\(char)" }           // преобразовываем char в строку
-            .forEach { emoji in
-                generateCards(with: emoji, number: gameTheme.gameRules.requiredCardsCount)
-            }
+        newGame()
     }
     
     private func generateCards(with emoji: String, number: Int) {
@@ -42,5 +37,19 @@ class EmojiMemoryGame: ObservableObject {
     
     func chooseCard(card: Card<String>) {
         model.choose(card: card)
+    }
+    
+    func newGame() {
+        gameTheme.emojiTheme.currentTheme
+            .sliceRandomUniqueValues(count: 4)  // готовим 4 случайных элемента стрки с выбранной темой
+            .map{ char in "\(char)" }           // преобразовываем char в строку
+            .forEach { emoji in
+                generateCards(with: emoji, number: gameTheme.gameRules.requiredCardsCount)
+            }
+        shuffle()
+    }
+    
+    func shuffle() {
+        model.shuffle()
     }
 }

@@ -5,25 +5,33 @@
 //  Created by Artem Japparov on 30.12.2020.
 //
 
-import UIKit
+import SwiftUI
 
-struct GameTheme {
+class GameTheme: ObservableObject {
     
-    let emojiTheme: EmojiThemes
-    let background: BackgroundColorTheme
-    let rubashkaColor: RubashkaColorTheme
-    let gameRules: GameRule<String>
+    @Published var emojiTheme: EmojiThemes
+    @Published var background: BackgroundColorTheme
+    @Published var rubashkaColor: RubashkaColorTheme
+    @Published var gameRules: GameRule<String>
+    
+    init(
+        emojiTheme: EmojiThemes,
+        background: BackgroundColorTheme,
+        rubashkaColor: RubashkaColorTheme,
+        gameRules: GameRule<String>
+    ) {
+        self.emojiTheme = emojiTheme
+        self.background = background
+        self.rubashkaColor = rubashkaColor
+        self.gameRules = gameRules
+    }
     
     static func defaultTheme() -> GameTheme {
-        let emojis = EmojiThemes()
-        let backgroundTheme = BackgroundColorTheme()
-        let rubashkaTheme = RubashkaColorTheme()
-        let gameRule = DefaultGameRule<String>()
         return GameTheme(
-            emojiTheme: emojis,
-            background: backgroundTheme,
-            rubashkaColor: rubashkaTheme,
-            gameRules: gameRule
+            emojiTheme: EmojiThemes(),
+            background: BackgroundColorTheme(),
+            rubashkaColor: RubashkaColorTheme(),
+            gameRules: DefaultGameRule<String>()
         )
     }
 }
