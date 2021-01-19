@@ -13,28 +13,31 @@ struct SettingsContentView: View {
     
     @ObservedObject var gameTheme: GameTheme
     
-    @State var rubashkaColor: ColorTheme = ColorTheme.white
+    @State var theme = GameThemes.HALLOWEEN
     
     var body: some View {
         NavigationView {
             Form {
-                Picker("Rubashka Color", selection: $rubashkaColor, content: {
-                    ForEach(gameTheme.rubashkaColor.colors, id: \.self) { color in
-                            Text(color.name)
-                                .tag(color.name)
-                        }
-                    })
-        }
+                Picker("Theme", selection: $theme, content: {
+                    ForEach(GameThemes.allCases, id: \.self) { selectedThemeName in
+                        let selectedTheme = selectedThemeName.getTheme()
+                        Text(selectedTheme.name)
+                            .tag(selectedTheme.name)
+                    }
+                })
+            }
             .navigationBarTitle("Settings")
-                       .navigationBarItems(trailing: Button(action: {
-                           self.gameTheme.rubashkaColor.currentColor = self.rubashkaColor
-                           self.presentationMode.wrappedValue.dismiss()
-                       }, label: {
-                           Text("Dismiss")
-                       }))
+            .navigationBarItems(trailing: Button(action: {
+                self.gameTheme.gameTheme = self.theme
+                self.presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Text("Dismiss")
+            }))
         }
         .onAppear(perform: {
-            self.rubashkaColor = self.gameTheme.rubashkaColor.currentColor
+            //            self.rubashkaColor = self.gameTheme.rubashkaColor.currentColor
+            //            self.backgroundColor = self.gameTheme.background.currentColor
+            
         })
     }
 }

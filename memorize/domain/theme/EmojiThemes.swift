@@ -7,50 +7,41 @@
 
 import Foundation
 
-struct EmojiThemes {
+class EmojiThemes: ObservableObject {
     
     // MARK: - Properties
     
-    var currentTheme: String {
-        return getTheme(theme: theme)
-    }
+    @Published var currentTheme: EmojiTheme
     
-    // MARK: - Private properties
-    
-    private var theme: String = "FRUITS"
-    private var themeLabels: Array<String>
-    
-    
-    let themes: Dictionary<String, String> = [
-        "FRUITS":  "🍏🍎🍐🍊🍋🍌🍉🍇🍑🍒🍈🍓🍍🥝",
-        "FACES": "😀😄😁😆😂😊☺️😉🙂",
-        "ANIMALS": "🐶🐱🐼🐻🦊🐰🐮🐷🐵🐤🦆🦉🐴",
-        "WEATHER": "⚡️🌪🌈☀️⛅️☁️🌦🌧🌩❄️💨☔️🌊",
-        "SPORTS": "⚽️🏀🏈🎾🏐🏓🏒⛸🥊🥋",
-        "COMPUTERS": "💻🖥⌨️🖱🕹💽💾📼📟📠📱"
+    static let themes: Array<EmojiTheme> = [
+        EmojiTheme(name: "halloween", content:  "👻🎃🧞‍♂️🧟‍♂️🧙🏻‍♂️🧝🧛🏻‍♂️💀"),
+        EmojiTheme(name: "devices", content: "💻🖥⌨️🖱🕹💽💾📼📟📠📱"),
+        EmojiTheme(name: "fruits", content:  "🍏🍎🍐🍊🍋🍌🍉🍇🍑🍒🍈🍓🍍🥝")
     ]
-    
-    init() {
-        themeLabels = Array(themes.keys)
-    }
     
     // MARK: - Public methods
     
-    func getTheme() -> String {
-        return themes[theme].nonNull
+    init() {
+        currentTheme = Self.themes.first!
     }
     
-    func getTheme(theme tempTheme: String) -> String {
-        return themes[tempTheme].nonNull
+    func getRandTheme() -> EmojiTheme {
+        let position = Self.themes.count.random
+        return Self.themes[position]
     }
+}
+
+
+struct EmojiTheme: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let content: String
     
-    mutating func getTheme(at position: Int) -> String {
-        self.theme = themeLabels[position % themeLabels.count]
-        return currentTheme
+    init(name: String, content: String) {
+        self.id = name
+        self.name = name
+        self.content = content
     }
-    
-    mutating func getRandTheme() -> String {
-        let position = themeLabels.count.random
-        return getTheme(at: position)
-    }
+
+    static let empty: EmojiTheme = EmojiTheme(name: "", content: "")
 }

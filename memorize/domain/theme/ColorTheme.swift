@@ -36,35 +36,41 @@ struct ColorTheme: Identifiable, Hashable {
     static let white = ColorTheme(name: "white", color: .white)
 }
 
-class BackgroundColorTheme: ColorThemes {
+class Colors: ColorThemes {
+    
+    static let sapphire = ColorTheme(
+        name: "sapphire",
+        color: Color.init(red: 0.02, green: 0.23, blue: 0.39)
+    )
+    
+    static let blackPearl = ColorTheme(
+        name: "black pearl",
+        color: Color.init(red: 0.09, green: 0.11, blue: 0.13)
+    )
+    
+    static let pumpkin = ColorTheme(
+        name: "pumpkin",
+        color: Color.init(red: 1, green: 0.46, blue: 0.09)
+    )
+    
+    static let concrete = ColorTheme(
+        name: "concrete",
+        color: Color.init(red: 0.85, green: 0.85, blue: 0.84)
+    )
+    
+    static let yougurt = ColorTheme(
+        name: "yougurt",
+        color: Color.init(red: 0.96, green: 0.88, blue: 0.88)
+    )
+    
+    static let redApple = ColorTheme(
+        name: "redApple",
+        color: Color.init(red: 0.59, green: 0.09, blue: 0.08)
+    )
+    
     
     init() {
-        super.init(colors: [
-            ColorTheme(
-                name: "sapphire",
-                color: Color.init(red: 0.02, green: 0.23, blue: 0.39)
-            ),
-            ColorTheme(
-                name: "black pearl",
-                color: Color.init(red: 0.09, green: 0.11, blue: 0.13)
-            )
-        ])
-    }
-}
-
-class RubashkaColorTheme: ColorThemes {
-    
-    init() {
-        super.init(colors: [
-            ColorTheme(
-                name: "pumpkin",
-                color: Color.init(red: 1, green: 0.46, blue: 0.09)
-            ),
-            ColorTheme(
-                name: "concrete",
-                color: Color.init(red: 0.85, green: 0.85, blue: 0.84)
-            )
-        ])
+        super.init(colors: [Self.pumpkin, Self.concrete, Self.blackPearl, Self.sapphire])
     }
 }
 

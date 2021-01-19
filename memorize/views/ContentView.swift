@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                viewModel.gameTheme.background.currentColor.color.edgesIgnoringSafeArea(.all)
+                viewModel.gameTheme.gameTheme.getTheme().background.color.edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
                     Grid(viewModel.cards) { card in
                         CardView(
@@ -37,17 +37,17 @@ struct ContentView: View {
                     }.padding(.horizontal, 8)
                 }
                 .padding(.horizontal, 8)
-                .background(viewModel.gameTheme.background.currentColor.color)
+                .background(viewModel.gameTheme.gameTheme.getTheme().background.color)
                 .navigationBarItems(trailing: settingsButton)
                 .sheet(isPresented: $showSettings, onDismiss: {
-                    self.gameTheme.rubashkaColor = self.viewModel.gameTheme.rubashkaColor
+                        self.gameTheme.gameTheme = self.viewModel.gameTheme.gameTheme
                 }, content: {
-                    SettingsContentView(gameTheme: self.gameTheme)
+                    SettingsContentView(gameTheme: self.viewModel.gameTheme)
                 })
             }
         }
         .onAppear(perform: {
-            gameTheme.rubashkaColor = self.viewModel.gameTheme.rubashkaColor
+            self.gameTheme.gameTheme = self.viewModel.gameTheme.gameTheme
         })
     }
     
@@ -80,7 +80,8 @@ struct CardView: View {
     
     
     init(card: Card<String>, gameTheme: GameTheme) {
-        self.lable = card.content
+        self.lable = gameTheme.gameTheme.getTheme().emojiTheme.content.at(Int(card.content) ?? 0)
+
         self.isFaceUp = card.isFaceUp
         self.isMatched = card.isMatched
         self.gameTheme = gameTheme
@@ -88,25 +89,22 @@ struct CardView: View {
     
     var body: some View {
         ZStack {
-            if !isMatched {
-                if isFaceUp {
-                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                        .fill(Color.white)
-                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                        .stroke(lineWidth: 3.0)
-                        .foregroundColor(gameTheme.rubashkaColor)
-                    Text(lable)
-                        .font(.largeTitle)
-                        .foregroundColor(gameTheme.rubashkaColor)
-                } else {
-                    RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                        .fill(gameTheme.rubashkaColor)
-                }
+            if isFaceUp {
+                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    .fill(Color.white)
+                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    .stroke(lineWidth: 3.0)
+                    .foregroundColor(gameTheme.rubashkaColor)
+                Text(lable)
+                    .font(.largeTitle)
+                    .foregroundColor(gameTheme.rubashkaColor)
             } else {
-                Rectangle().fill(gameTheme.background)
+                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    .fill(gameTheme.rubashkaColor)
             }
         }
         .padding(8.0)
+        .opacity(isMatched ? 0 : 1)
     }
 }
 

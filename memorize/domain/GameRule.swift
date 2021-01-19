@@ -43,6 +43,13 @@ class GameRule<CardContent> where CardContent: Comparable {
 class DefaultGameRule<CardContent>: GameRule<CardContent> where CardContent: Comparable {
     
     init() {
+        super.init(requiredCardsCount: 2)
+    }
+}
+
+class ThreeCardGameRule<CardContent>: GameRule<CardContent> where CardContent: Comparable {
+    
+    init() {
         super.init(requiredCardsCount: 3)
     }
 }

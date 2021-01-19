@@ -9,29 +9,24 @@ import SwiftUI
 
 class GameTheme: ObservableObject {
     
-    @Published var emojiTheme: EmojiThemes
-    @Published var background: BackgroundColorTheme
-    @Published var rubashkaColor: RubashkaColorTheme
-    @Published var gameRules: GameRule<String>
+    @Published var gameTheme: GameThemes
+    
+    var background: ColorTheme {
+        gameTheme.getTheme().background
+    }
+    var rubashkaColor: ColorTheme {
+        gameTheme.getTheme().rubashkaColor
+    }
+    var pie: Int = 0 /// todo!!!
     
     init(
-        emojiTheme: EmojiThemes,
-        background: BackgroundColorTheme,
-        rubashkaColor: RubashkaColorTheme,
-        gameRules: GameRule<String>
+        gameTheme: GameThemes
     ) {
-        self.emojiTheme = emojiTheme
-        self.background = background
-        self.rubashkaColor = rubashkaColor
-        self.gameRules = gameRules
+        self.gameTheme = gameTheme
+        
     }
     
     static func defaultTheme() -> GameTheme {
-        return GameTheme(
-            emojiTheme: EmojiThemes(),
-            background: BackgroundColorTheme(),
-            rubashkaColor: RubashkaColorTheme(),
-            gameRules: DefaultGameRule<String>()
-        )
+        return GameTheme(gameTheme: GameThemes.HALLOWEEN)
     }
 }

@@ -40,12 +40,18 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     func newGame() {
-        gameTheme.emojiTheme.currentTheme
-            .sliceRandomUniqueValues(count: 4)  // готовим 4 случайных элемента стрки с выбранной темой
-            .map{ char in "\(char)" }           // преобразовываем char в строку
-            .forEach { emoji in
-                generateCards(with: emoji, number: gameTheme.gameRules.requiredCardsCount)
-            }
+        (0...4).map { index in
+            "\(index)"
+        }.forEach { index in
+            generateCards(with: index, number: 2)
+        }
+        
+//        gameTheme.gameTheme.getTheme().emojiTheme.content
+//            .sliceRandomUniqueValues(count: 4)  // готовим 4 случайных элемента стрки с выбранной темой
+//            .map{ char in "\(char)" }           // преобразовываем char в строку
+//            .forEach { emoji in
+//                generateCards(with: emoji, number: 2)
+//            }
         shuffle()
     }
     
