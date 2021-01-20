@@ -37,6 +37,7 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     func newGame() {
+        model.clearCards()
         (0...4).map { index in
             "\(index)"
         }.forEach { index in

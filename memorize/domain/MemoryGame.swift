@@ -60,6 +60,10 @@ struct MemoryGame <CardContent> where CardContent: Comparable {
     mutating func buildCard(content: CardContent, id: Int? = nil) {
         cards.append(Card(content: content, id: id ?? cards.count ))
     }
+    
+    mutating func clearCards() {
+        cards.removeAll()
+    }
 }
 
 struct Card<CardContent>: Identifiable where CardContent: Comparable {
