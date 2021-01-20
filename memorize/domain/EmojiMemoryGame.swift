@@ -19,11 +19,8 @@ class EmojiMemoryGame: ObservableObject {
     var score: Int {
         model.score
     }
-
-    @Published var gameTheme: GameTheme
     
-    init(gameTheme: GameTheme) {
-        self.gameTheme = gameTheme
+    init() {
         newGame()
     }
     

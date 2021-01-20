@@ -24,7 +24,7 @@ struct SettingsContentView: View {
                         Text(selectedTheme.name)
                             .tag(selectedTheme.name)
                     }
-                })
+                }).pickerStyle(WheelPickerStyle())
             }
             .navigationBarTitle("Settings")
             .navigationBarItems(trailing: Button(action: {
@@ -41,6 +41,7 @@ struct SettingsContentView: View {
         })
     }
 }
+
 
 
 

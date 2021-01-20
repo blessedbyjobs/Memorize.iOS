@@ -25,11 +25,9 @@
 		DB737825259D0FC7003A00E4 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB737824259D0FC7003A00E4 /* GridLayout.swift */; };
 		DB737828259D0FE8003A00E4 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB737827259D0FE8003A00E4 /* Grid.swift */; };
 		DB73782D259D12E6003A00E4 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB73782C259D12E6003A00E4 /* ArrayExtensions.swift */; };
-		DBD1928325B4927C00EF741E /* KotlinLikeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1928225B4927C00EF741E /* KotlinLikeExtensions.swift */; };
 		DBD1928825B4991400EF741E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1928725B4991400EF741E /* Theme.swift */; };
 		DBDA60CD25A5CCF8000382E5 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDA60CC25A5CCF8000382E5 /* ViewExtensions.swift */; };
 		DBDA60D025A5D746000382E5 /* SettingsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDA60CF25A5D746000382E5 /* SettingsContentView.swift */; };
-		DBDA60D325A5EE58000382E5 /* PickerScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDA60D225A5EE58000382E5 /* PickerScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,11 +51,9 @@
 		DB737824259D0FC7003A00E4 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		DB737827259D0FE8003A00E4 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		DB73782C259D12E6003A00E4 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
-		DBD1928225B4927C00EF741E /* KotlinLikeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinLikeExtensions.swift; sourceTree = "<group>"; };
 		DBD1928725B4991400EF741E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		DBDA60CC25A5CCF8000382E5 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		DBDA60CF25A5D746000382E5 /* SettingsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContentView.swift; sourceTree = "<group>"; };
-		DBDA60D225A5EE58000382E5 /* PickerScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +133,6 @@
 			children = (
 				DB73782A259D1036003A00E4 /* grid */,
 				DB2E7DC5259A7BC3009A1EB4 /* ContentView.swift */,
-				DBDA60D225A5EE58000382E5 /* PickerScreenView.swift */,
 				DBDA60CF25A5D746000382E5 /* SettingsContentView.swift */,
 			);
 			path = views;
@@ -151,7 +146,6 @@
 				DB10A02F259D24E8005F9043 /* NonNullExtension.swift */,
 				DB35EA8E25A0ED85001E78D8 /* StringExtensions.swift */,
 				DBDA60CC25A5CCF8000382E5 /* ViewExtensions.swift */,
-				DBD1928225B4927C00EF741E /* KotlinLikeExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -244,8 +238,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBDA60D325A5EE58000382E5 /* PickerScreenView.swift in Sources */,
-				DBD1928325B4927C00EF741E /* KotlinLikeExtensions.swift in Sources */,
 				DB737822259D0E3C003A00E4 /* IntExtensions.swift in Sources */,
 				DB73782D259D12E6003A00E4 /* ArrayExtensions.swift in Sources */,
 				DB2E7DC2259A7BC3009A1EB4 /* AppDelegate.swift in Sources */,

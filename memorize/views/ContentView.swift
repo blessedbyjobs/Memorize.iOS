@@ -9,15 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel: EmojiMemoryGame = EmojiMemoryGame(gameTheme: GameTheme.defaultTheme())
+    @Environment(\.presentationMode) var presentationMode
+    
+    @ObservedObject var viewModel: EmojiMemoryGame = EmojiMemoryGame()
     
     @State var showSettings: Bool = false
+    @State var theme = GameThemes.HALLOWEEN
     @ObservedObject var gameTheme: GameTheme = GameTheme.defaultTheme()
     
     var body: some View {
         NavigationView {
             ZStack {
-                viewModel.gameTheme.gameTheme.getTheme().background.color.edgesIgnoringSafeArea(.all)
+                gameTheme.gameTheme.getTheme().background.color.edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
                     Grid(viewModel.cards) { card in
                         CardView(
@@ -28,27 +31,23 @@ struct ContentView: View {
                         }
                     }
                     .padding(.top, 0)
-                    HStack {
-                        Text("Score: \(viewModel.score)")
-                            .fontWeight(.semibold)
-                            .padding(.vertical, 8)
-                            .foregroundColor(gameTheme.rubashkaColor)
-                        Spacer()
-                    }.padding(.horizontal, 8)
+                    bottomBar.padding(.horizontal, 8)
                 }
                 .padding(.horizontal, 8)
-                .background(viewModel.gameTheme.gameTheme.getTheme().background.color)
-                .navigationBarItems(trailing: settingsButton)
-                .sheet(isPresented: $showSettings, onDismiss: {
-                        self.gameTheme.gameTheme = self.viewModel.gameTheme.gameTheme
-                }, content: {
-                    SettingsContentView(gameTheme: self.viewModel.gameTheme)
-                })
+                .background(gameTheme.gameTheme.getTheme().background.color)
+                .navigationBarItems(trailing: themeButton)
+                .sheet(isPresented: $showSettings, content: { SettingsContentView(gameTheme: self.gameTheme) })
             }
         }
-        .onAppear(perform: {
-            self.gameTheme.gameTheme = self.viewModel.gameTheme.gameTheme
-        })
+    }
+    
+    var themeButton: some View {
+        NavigationLink(destination: picker) {
+            Text(gameTheme.gameTheme.getTheme().name)
+                .fontWeight(.semibold)
+                .foregroundColor(gameTheme.rubashkaColor)
+            
+        }
     }
     
     var newGameButton: some View {
@@ -69,6 +68,39 @@ struct ContentView: View {
                 .foregroundColor(gameTheme.rubashkaColor)
         })
     }
+    
+    var topBar: some View {
+        HStack {
+            Spacer()
+            themeButton
+        }
+    }
+    
+    var bottomBar: some View {
+        HStack {
+            newGameButton
+            Spacer()
+            Text("Score: \(viewModel.score)")
+                .fontWeight(.semibold)
+                .padding(.vertical, 8)
+                .foregroundColor(gameTheme.rubashkaColor)
+            Spacer()
+            settingsButton
+        }
+    }
+    
+    var picker: some View {
+        Picker("Theme", selection: $gameTheme.gameTheme, content: {
+            ForEach(GameThemes.allCases, id: \.self) { selectedThemeName in
+                let selectedTheme = selectedThemeName.getTheme()
+                let cardContent: String? = selectedTheme.emojiTheme.content.first?.toString()
+                
+                Text("\(cardContent.nonNull) \(selectedTheme.name)")
+                    .foregroundColor(selectedTheme.rubashkaColor)
+                    .tag(selectedTheme.name)
+            }
+        }).pickerStyle(InlinePickerStyle())
+    }
 }
 
 struct CardView: View {
@@ -78,10 +110,8 @@ struct CardView: View {
     var lable: String
     @ObservedObject var gameTheme: GameTheme
     
-    
     init(card: Card<String>, gameTheme: GameTheme) {
         self.lable = gameTheme.gameTheme.getTheme().emojiTheme.content.at(Int(card.content) ?? 0)
-
         self.isFaceUp = card.isFaceUp
         self.isMatched = card.isMatched
         self.gameTheme = gameTheme
