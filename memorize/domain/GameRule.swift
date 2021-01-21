@@ -13,7 +13,15 @@ enum GameRulesResolution<CardContent> where CardContent: Comparable {
     case hit(Array<Card<CardContent>>)
 }
 
-class GameRule<CardContent> where CardContent: Comparable {
+struct GameRule<CardContent>: Hashable where CardContent: Comparable {
+    
+    static func == (lhs: GameRule<CardContent>, rhs: GameRule<CardContent>) -> Bool {
+        return lhs.requiredCardsCount == rhs.requiredCardsCount
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(requiredCardsCount)
+    }
     
     let requiredCardsCount: Int
     private var selectedCards: Array<Card<CardContent>> = []
@@ -22,7 +30,7 @@ class GameRule<CardContent> where CardContent: Comparable {
         self.requiredCardsCount = requiredCardsCount
     }
     
-    func chooseCard(card: Card<CardContent>) -> GameRulesResolution<CardContent> {
+    mutating func chooseCard(card: Card<CardContent>) -> GameRulesResolution<CardContent> {
         var result = GameRulesResolution<CardContent>.nothing
         if !card.isFaceUp && !card.isMatched {
             selectedCards.append(card)
@@ -40,16 +48,9 @@ class GameRule<CardContent> where CardContent: Comparable {
     }
 }
 
-class DefaultGameRule<CardContent>: GameRule<CardContent> where CardContent: Comparable {
+class EmojiGameRules {
+    static let twoCardGameRule = GameRule<String>(requiredCardsCount: 2)
+    static let threeCardGameRule = GameRule<String>(requiredCardsCount: 3)
     
-    init() {
-        super.init(requiredCardsCount: 2)
-    }
-}
-
-class ThreeCardGameRule<CardContent>: GameRule<CardContent> where CardContent: Comparable {
-    
-    init() {
-        super.init(requiredCardsCount: 3)
-    }
+    static let allRules = [twoCardGameRule, threeCardGameRule]
 }

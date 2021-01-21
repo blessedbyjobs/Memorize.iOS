@@ -15,6 +15,7 @@ struct ContentView: View {
     
     @State var showSettings: Bool = false
     @State var theme = GameThemes.HALLOWEEN
+    @State var rule = EmojiGameRules.twoCardGameRule
     @ObservedObject var gameTheme: GameTheme = GameTheme.defaultTheme()
     
     var body: some View {
@@ -46,7 +47,6 @@ struct ContentView: View {
             Text(gameTheme.gameTheme.getTheme().name)
                 .fontWeight(.semibold)
                 .foregroundColor(gameTheme.rubashkaColor)
-            
         }
     }
     
@@ -61,12 +61,10 @@ struct ContentView: View {
     }
     
     var settingsButton: some View {
-        Button(action: {
-            self.showSettings = true
-        }, label: {
+        NavigationLink(destination: modePicker) {
             Image(systemName: "gearshape")
                 .foregroundColor(gameTheme.rubashkaColor)
-        })
+        }
     }
     
     var topBar: some View {
@@ -91,8 +89,8 @@ struct ContentView: View {
     
     var picker: some View {
         Picker("Theme", selection: $gameTheme.gameTheme, content: {
-            ForEach(GameThemes.allCases, id: \.self) { selectedThemeName in
-                let selectedTheme = selectedThemeName.getTheme()
+            ForEach(GameThemes.allCases, id: \.self) { selectedThemeWrapper in
+                let selectedTheme = selectedThemeWrapper.getTheme()
                 let cardContent: String? = selectedTheme.emojiTheme.content.first?.toString()
                 
                 Text("\(cardContent.nonNull) \(selectedTheme.name)")
@@ -101,25 +99,51 @@ struct ContentView: View {
             }
         }).pickerStyle(InlinePickerStyle())
     }
+    
+    var modePicker: some View {
+        Picker("Mode", selection: $rule){
+            ForEach(EmojiGameRules.allRules, id: \.self) { selectedRules in
+                let title = "\(selectedRules.requiredCardsCount) cards"
+                Text(title)
+            }
+        }
+        .onDisappear {
+            self.viewModel.updateRules(rule: rule)
+
+        }
+//        .onReceive([self.rule].publisher.first()) { (item) in
+//            self.viewModel.updateRules(rule: item)
+//        }
+        .pickerStyle(InlinePickerStyle())
+       
+    }
 }
 
 struct CardView: View {
     
-    var isFaceUp: Bool = true
     var isMatched: Bool = false
     var lable: String
+    var shouldCloseDelayed = false
+    var card: Card<String>
     @ObservedObject var gameTheme: GameTheme
+    var isFaceUp: Bool? = nil
+
     
     init(card: Card<String>, gameTheme: GameTheme) {
         self.lable = gameTheme.gameTheme.getTheme().emojiTheme.content.at(Int(card.content) ?? 0)
-        self.isFaceUp = card.isFaceUp
         self.isMatched = card.isMatched
         self.gameTheme = gameTheme
+        self.card = card
+//        if card.isJustSeen {
+//            self.isFaceUp = true
+//        } else {
+            self.isFaceUp = card.isFaceUp
+//        }
     }
     
     var body: some View {
         ZStack {
-            if isFaceUp {
+            if isFaceUp == true {
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                     .fill(Color.white)
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
@@ -128,13 +152,28 @@ struct CardView: View {
                 Text(lable)
                     .font(.largeTitle)
                     .foregroundColor(gameTheme.rubashkaColor)
+                    .onAppear(perform: updateFaceUpState)
             } else {
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                     .fill(gameTheme.rubashkaColor)
+                    .onAppear(perform: updateFaceUpState)
             }
         }
         .padding(8.0)
         .opacity(isMatched ? 0 : 1)
+        .onAppear {
+            updateFaceUpState()
+            if (card.isJustSeen) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    //isFaceUp = false
+//                    self.isFaceUp = false
+                }
+            }
+        }
+    }
+    
+    private func updateFaceUpState() {
+      //  self.isFaceUp = card.isFaceUp
     }
 }
 

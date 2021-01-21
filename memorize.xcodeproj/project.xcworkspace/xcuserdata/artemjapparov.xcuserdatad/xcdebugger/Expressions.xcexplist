@@ -3,10 +3,43 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "String.at(_:):StringExtensions.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Array(self)">
+            </PersistentString>
+            <PersistentString
+               value = "Array(arrayLiteral: self)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentView.body.getter:ContentView.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.viewModel.cards">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ContentView.body.getter:ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.cards">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EmojiMemoryGame.cards.getter:EmojiMemoryGame.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in CardView.body.getter:ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "card.isFaceUp">
+            </PersistentString>
+            <PersistentString
+               value = "isFaceUp">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,24 +55,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MemoryGame.choose(card:):MemoryGame.swift">
+         contextName = "CardView.init(card:gameTheme:):ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.isFaceUp">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "GameRule.chooseCard(card:):GameRule.swift">
       </ContextState>
       <ContextState
-         contextName = "String.at(_:):StringExtensions.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "Array(self)">
-            </PersistentString>
-            <PersistentString
-               value = "Array(arrayLiteral: self)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "EmojiMemoryGame.cards.getter:EmojiMemoryGame.swift">
+         contextName = "MemoryGame.choose(card:):MemoryGame.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

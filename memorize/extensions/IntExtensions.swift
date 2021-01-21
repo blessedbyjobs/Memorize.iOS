@@ -26,4 +26,13 @@ extension Int {
             }
         }
     }
+    
+    func times(_ f: (Int) -> ()) {
+        if self > 0 {
+            for i in 0..<self {
+                f(i)
+            }
+        }
+    }
+
 }

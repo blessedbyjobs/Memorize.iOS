@@ -9,7 +9,7 @@ import Foundation
 
 class EmojiMemoryGame: ObservableObject {
     
-    @Published private var model: MemoryGame<String> = MemoryGame()
+    @Published private var model: MemoryGame<String> = MemoryGame(gameRules: EmojiGameRules.twoCardGameRule)
     
     //MARK: - public fields
     var cards: Array<Card<String>> {
@@ -18,6 +18,10 @@ class EmojiMemoryGame: ObservableObject {
     
     var score: Int {
         model.score
+    }
+    
+    var gameMode: GameRule<String> {
+        model.gameRules
     }
     
     init() {
@@ -33,23 +37,24 @@ class EmojiMemoryGame: ObservableObject {
     //MARK: - intents
     
     func chooseCard(card: Card<String>) {
-        model.choose(card: card)
+        let result = model.choose(card: card)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.model.applyResult(result: result)
+        })
+    }
+    
+    func updateRules(rule: GameRule<String>) {
+        model.gameRules = rule
+        newGame()
     }
     
     func newGame() {
-        model.clearCards()
-        (0...4).map { index in
-            "\(index)"
-        }.forEach { index in
-            generateCards(with: index, number: 2)
+        model.clearModel()
+        Int.random(in: 2...5)
+            .times { index in
+                generateCards(with: "\(index)", number: model.gameRules.requiredCardsCount)
         }
-        
-//        gameTheme.gameTheme.getTheme().emojiTheme.content
-//            .sliceRandomUniqueValues(count: 4)  // готовим 4 случайных элемента стрки с выбранной темой
-//            .map{ char in "\(char)" }           // преобразовываем char в строку
-//            .forEach { emoji in
-//                generateCards(with: emoji, number: 2)
-//            }
+    
         shuffle()
     }
     
