@@ -12,6 +12,7 @@ struct Theme: Hashable {
     let emojiTheme: EmojiTheme
     let background: ColorTheme
     let rubashkaColor: ColorTheme
+    let pieConfig: PieConfig
 }
 
 enum GameThemes: CaseIterable {
@@ -26,21 +27,24 @@ enum GameThemes: CaseIterable {
                 name: "Halloween",
                 emojiTheme: EmojiThemes.themes.first!,
                 background: Colors.sapphire,
-                rubashkaColor: Colors.pumpkin
+                rubashkaColor: Colors.pumpkin,
+                pieConfig: PieConfig.defaultConfing
             )
         case .DEVICES:
             return Theme(
                 name: "Devices",
                 emojiTheme: EmojiThemes.themes[1],
                 background: Colors.concrete,
-                rubashkaColor: Colors.blackPearl
+                rubashkaColor: Colors.blackPearl,
+                pieConfig: PieConfig.diskConfing
             )
         case .FRUITS:
             return Theme(
                 name: "Fruits",
                 emojiTheme: EmojiThemes.themes.last!,
                 background: Colors.yougurt,
-                rubashkaColor: Colors.redApple
+                rubashkaColor: Colors.redApple,
+                pieConfig: PieConfig.pacmanConfing
             )
     }
     }

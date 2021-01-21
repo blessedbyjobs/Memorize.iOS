@@ -17,7 +17,15 @@ class GameTheme: ObservableObject {
     var rubashkaColor: ColorTheme {
         gameTheme.getTheme().rubashkaColor
     }
-    var pie: Int = 0 /// todo!!!
+    var pieStartAngle: Double {
+        gameTheme.getTheme().pieConfig.startAngle
+    }
+    var pieEndAngle: Double {
+        gameTheme.getTheme().pieConfig.endAngle
+    }
+    var pieOpacity: Double {
+        gameTheme.getTheme().pieConfig.opacity
+    }
     
     init(
         gameTheme: GameThemes

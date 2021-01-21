@@ -23,6 +23,7 @@ struct ContentView: View {
             ZStack {
                 gameTheme.gameTheme.getTheme().background.color.edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
+                    topBar.padding(8)
                     Grid(viewModel.cards) { card in
                         CardView(
                             card: card,
@@ -36,8 +37,9 @@ struct ContentView: View {
                 }
                 .padding(.horizontal, 8)
                 .background(gameTheme.gameTheme.getTheme().background.color)
-                .navigationBarItems(trailing: themeButton)
+//                .navigationBarItems(trailing: themeButton)
                 .sheet(isPresented: $showSettings, content: { SettingsContentView(gameTheme: self.gameTheme) })
+                .navigationBarHidden(true)
             }
         }
     }
@@ -55,6 +57,8 @@ struct ContentView: View {
             viewModel.newGame()
         }, label: {
             Image(systemName: "plus")
+                .resizable()
+                .frame(width: 20.0, height: 20.0)
                 .foregroundColor(gameTheme.rubashkaColor)
         })
 
@@ -63,8 +67,22 @@ struct ContentView: View {
     var settingsButton: some View {
         NavigationLink(destination: modePicker) {
             Image(systemName: "gearshape")
+                .resizable()
+                .frame(width: 20.0, height: 20.0)
                 .foregroundColor(gameTheme.rubashkaColor)
         }
+    }
+    
+    var shuffleButton: some View {
+        Button(action: {
+            viewModel.shuffle()
+        }, label: {
+            Image(systemName: "shuffle")
+                .resizable()
+                .frame(width: 20.0, height: 20.0)
+                .foregroundColor(gameTheme.rubashkaColor)
+                .padding(.leading, 16)
+        })
     }
     
     var topBar: some View {
@@ -77,6 +95,7 @@ struct ContentView: View {
     var bottomBar: some View {
         HStack {
             newGameButton
+            shuffleButton
             Spacer()
             Text("Score: \(viewModel.score)")
                 .fontWeight(.semibold)
@@ -123,22 +142,16 @@ struct CardView: View {
     
     var isMatched: Bool = false
     var lable: String
-    var shouldCloseDelayed = false
+    var isFaceUp: Bool? = nil
     var card: Card<String>
     @ObservedObject var gameTheme: GameTheme
-    var isFaceUp: Bool? = nil
-
     
     init(card: Card<String>, gameTheme: GameTheme) {
         self.lable = gameTheme.gameTheme.getTheme().emojiTheme.content.at(Int(card.content) ?? 0)
         self.isMatched = card.isMatched
         self.gameTheme = gameTheme
         self.card = card
-//        if card.isJustSeen {
-//            self.isFaceUp = true
-//        } else {
-            self.isFaceUp = card.isFaceUp
-//        }
+        self.isFaceUp = card.isFaceUp
     }
     
     var body: some View {
@@ -149,31 +162,24 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                     .stroke(lineWidth: 3.0)
                     .foregroundColor(gameTheme.rubashkaColor)
+                Pie(
+                    startAngle: Angle.degrees(gameTheme.pieStartAngle),
+                    endAngle: Angle.degrees(gameTheme.pieEndAngle),
+                    clockwise: true
+                )
+                .fill(gameTheme.rubashkaColor)
+                .padding(5)
+                .opacity(gameTheme.pieOpacity)
                 Text(lable)
                     .font(.largeTitle)
                     .foregroundColor(gameTheme.rubashkaColor)
-                    .onAppear(perform: updateFaceUpState)
             } else {
                 RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                     .fill(gameTheme.rubashkaColor)
-                    .onAppear(perform: updateFaceUpState)
             }
         }
         .padding(8.0)
         .opacity(isMatched ? 0 : 1)
-        .onAppear {
-            updateFaceUpState()
-            if (card.isJustSeen) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    //isFaceUp = false
-//                    self.isFaceUp = false
-                }
-            }
-        }
-    }
-    
-    private func updateFaceUpState() {
-      //  self.isFaceUp = card.isFaceUp
     }
 }
 
